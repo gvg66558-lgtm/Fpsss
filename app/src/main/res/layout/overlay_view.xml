@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootOverlayLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#990B0E14"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:elevation="8dp">
+
+    <TextView
+        android:id="@+id/txtFps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="60 FPS"
+        android:textColor="@color/neon_green"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3" />
+
+    <TextView
+        android:id="@+id/txtCustomText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kryos Gaming"
+        android:textColor="@color/neon_blue"
+        android:textSize="14sp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:layout_marginTop="2dp" />
+
+</LinearLayout>
