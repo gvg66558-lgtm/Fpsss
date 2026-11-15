@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gaming_bg"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KRYOS FPS OVERLAY"
+            android:textColor="@color/neon_blue"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gaming_card"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trạng thái hoạt động"
+                android:textColor="@color/text_white"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/switchOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bật Overlay nổi"
+                android:textColor="@color/neon_green"
+                android:textSize="15sp"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnHideController"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ẩn giao diện này (Giữ Overlay)"
+                android:backgroundTint="@color/neon_purple"
+                android:textColor="@color/text_white"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gaming_card"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp">
+
+            <Switch
+                android:id="@+id/switchFps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hiển thị FPS"
+                android:textColor="@color/neon_blue"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:checked="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Màu chữ FPS:"
+                android:textColor="@color/text_gray"
+                android:layout_marginTop="8dp" />
+
+            <Spinner
+                android:id="@+id/spinnerFpsColor"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/neon_blue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cỡ chữ FPS:"
+                android:textColor="@color/text_gray"
+                android:layout_marginTop="8dp" />
+
+            <SeekBar
+                android:id="@+id/seekBarFpsSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="24"
+                android:progress="14"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gaming_card"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
+
+            <Switch
+                android:id="@+id/switchText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hiển thị Text tùy chỉnh"
+                android:textColor="@color/neon_purple"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:checked="true" />
+
+            <EditText
+                android:id="@+id/edtCustomText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập nội dung chữ tùy chỉnh..."
+                android:textColor="@color/text_white"
+                android:textColorHint="@color/text_gray"
+                android:text="Kryos Gaming"
+                android:backgroundTint="@color/neon_purple"
+                android:layout_marginTop="8dp"
+                android:padding="8dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
