@@ -1,36 +1,50 @@
-
-name: FPS 120 Build APK
+name: Build FPS 120 APK
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - name: Checkout source
+        uses: actions/checkout@v4
 
-      - name: Setup Java 17
-        uses: actions/setup-java@v5
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
+      # Bổ sung Setup Android SDK để máy chủ hiểu môi trường Android
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platforms;android-34'
 
-      - name: Build APK
-        run: gradle :app:assembleDebug
+      # Tự động tạo gradlew với phiên bản Gradle 8.5 tương thích tốt với Android SDK
+      - name: Install Gradle & Generate Wrapper
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gradle
+          gradle wrapper --gradle-version 8.5
+          chmod +x gradlew
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v5
+      - name: Build FPS 120
+        run: ./gradlew assembleDebug
+
+      - name: Rename APK
+        run: |
+          mkdir -p output
+          cp app/build/outputs/apk/debug/*.apk output/FPS-120.apk
+
+      - name: Upload FPS 120 APK
+        uses: actions/upload-artifact@v4
         with:
           name: FPS-120
-          path: app/build/outputs/apk/debug/*.apk
-          if-no-files-found: error
-          
+          path: output/FPS-120.apk
