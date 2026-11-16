@@ -1,18 +1,20 @@
-name: Build FPS 120 APK
+
+name: Build Kryos KeyMapper APK
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-      - master
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -21,32 +23,23 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
         with:
-          packages: 'platforms;android-34 build-tools;34.0.0'
+          gradle-version: '8.7'
 
-      - name: Install Gradle & Generate Wrapper
+      - name: Extract project
         run: |
-          sudo apt-get update
-          sudo apt-get install -y gradle
-          gradle wrapper --gradle-version 8.4
-          chmod +x gradlew
+          mkdir project
+          unzip -q Kryos-KeyMapper-Android-Project.zip -d project
 
-      - name: Fix Kotlin Gradle Version Check
-        run: echo "kotlin.suppressGradleVersionCheck=true" > gradle.properties
+      - name: Build APK
+        run: gradle -p project assembleDebug --stacktrace
 
-      - name: Build FPS 120
-        run: ./gradlew assembleDebug --stacktrace
-
-      - name: Rename APK
-        run: |
-          mkdir -p output
-          cp app/build/outputs/apk/debug/*.apk output/FPS-120.apk
-
-      - name: Upload FPS 120 APK
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: FPS-120
-          path: output/FPS-120.apk
+          name: Kryos-KeyMapper-APK
+          path: project/app/build/outputs/apk/debug/app-debug.apk
+
           
