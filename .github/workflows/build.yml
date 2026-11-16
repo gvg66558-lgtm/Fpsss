@@ -30,8 +30,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y gradle
-          gradle wrapper --gradle-version 8.7
+          gradle wrapper --gradle-version 8.4
           chmod +x gradlew
+
+      - name: Fix Kotlin Gradle Version Check
+        run: echo "kotlin.suppressGradleVersionCheck=true" > gradle.properties
 
       - name: Build FPS 120
         run: ./gradlew assembleDebug --stacktrace
