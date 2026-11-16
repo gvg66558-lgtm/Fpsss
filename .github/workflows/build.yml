@@ -21,10 +21,16 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          packages: 'platforms;android-34'
+      - name: Setup Android SDK Environment
+        run: |
+          echo "ANDROID_SDK_ROOT=/usr/local/lib/android/sdk" >> $GITHUB_ENV
+          export ANDROID_SDK_ROOT=/usr/local/lib/android/sdk
+          
+          # Tự động đồng ý cấp phép SDK
+          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          
+          # Cài đặt nền tảng Android 34 và công cụ biên dịch
+          $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platforms;android-34" "build-tools;34.0.0"
 
       - name: Install Gradle & Generate Wrapper
         run: |
